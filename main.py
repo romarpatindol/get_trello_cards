@@ -154,9 +154,12 @@ class GetTrelloCards:
             cards = []
             try:
                 cards_json_response = cards_response.json()
-                for response in cards_json_response:
-                    if self.board_label_id in response["idLabels"]:
-                        cards.append(response)
+                if self.trello_label_name != "all":
+                    for response in cards_json_response:
+                        if self.board_label_id in response["idLabels"]:
+                            cards.append(response)
+                else:
+                    cards = cards_json_response
                 
                 self.response_value.append(
                     {
@@ -192,9 +195,10 @@ class GetTrelloCards:
         if lists_response["status"] == 400:
             return lists_response
 
-        label_response = self.get_board_label_id()
-        if label_response["status"] == 400:
-            return label_response
+        if self.trello_label_name != "all":
+            label_response = self.get_board_label_id()
+            if label_response["status"] == 400:
+                return label_response
 
         cards_response = self.get_cards()
         if cards_response["status"] == 400:
