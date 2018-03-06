@@ -11,9 +11,9 @@ class GetTrelloCards:
         self.trello_list_name = trello_list_name
         self.trello_label_name = trello_label_name
         self.trello_card_fields = trello_card_fields
-        self.board_id = ""
-        self.list_id = ""
-        self.board_label_id = ""
+        self.board_id = None
+        self.list_id = None
+        self.board_label_id = None
         self.list_container = {}
         self.response_value = []
 
@@ -28,7 +28,7 @@ class GetTrelloCards:
     def get_lists(self):
         # Step 2 ______________________________________________________________________________________________________
         # Get all lists of the board
-        list_id = ""
+        list_id = None
         get_lists_url = "https://api.trello.com/1/boards/"+ self.board_id +"/lists?key="+ self.trello_api_key +"&token="+ self.trello_token +"&fields=name"
         lists_response = requests.request("GET", get_lists_url)
         
@@ -67,7 +67,7 @@ class GetTrelloCards:
         )
 
     def get_board_label_id(self):
-        board_label_id = ""
+        board_label_id = None
         get_labels_url = "https://api.trello.com/1/boards/"+ self.board_id +"/labels?key="+ self.trello_api_key +"&token="+ self.trello_token +"&fields=name"
         labels_response = requests.request("GET", get_labels_url)
         
@@ -106,7 +106,7 @@ class GetTrelloCards:
         )
 
     def get_board_id(self):
-        board_id = ""
+        board_id = None
         get_boards_url = "https://api.trello.com/1/members/"+ self.trello_username +"/boards?key="+ self.trello_api_key +"&token="+ self.trello_token +"&fields=name,shortLink,url"
         boards_response = requests.request("GET", get_boards_url)
         
