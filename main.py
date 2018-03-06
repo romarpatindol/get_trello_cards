@@ -176,7 +176,6 @@ class GetTrelloCards:
                     ""
                 )
 
-        # SUCCESS!!!
         return self.render_response(
             200, 
             "SUCCESS", 
@@ -204,7 +203,13 @@ class GetTrelloCards:
         if cards_response["status"] == 400:
             return cards_response
         
-        return self.response_value
+        # SUCCESS!!!
+        return self.render_response(
+            200, 
+            "SUCCESS", 
+            "Request was successfully performed",
+            self.response_value
+        )
 
 def main(trello_api_key, trello_token, trello_username, trello_url, trello_list_name, trello_label_name, trello_card_fields):
     split_list_name = trello_list_name.split(",")
