@@ -211,9 +211,12 @@ class GetTrelloCards:
             self.response_value
         )
 
+def striplist(l):
+    return([x.strip() for x in l])
+
 def main(trello_api_key, trello_token, trello_username, trello_url, trello_list_name, trello_label_name, trello_card_fields):
     split_list_name = trello_list_name.split(",")
-    split_list_name = map(str.strip, split_list_name)
+    split_list_name = striplist(split_list_name)
     get_trello_cards = GetTrelloCards(
         trello_api_key=trello_api_key,
         trello_token=trello_token,
