@@ -1,6 +1,6 @@
 # Allows you to generate or gather data from trello.
 **Step 1:**
-- Get the supercode python sdk and treat it as one of your library where you can import it. Click here: https://git.io/vxTjp
+- Get the supercode python sdk and treat it as part of your library where you can import it. Click here: https://git.io/vxTjp
 
 **Step 2:**
 - Sample usage:
